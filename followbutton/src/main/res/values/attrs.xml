@@ -9,7 +9,7 @@
         <attr name="follow_textColor_check" format="color" />
         <attr name="follow_text_nor" format="string" />
         <attr name="follow_text_check" format="string" />
-        <attr name="follow_check" format="boolean"></attr>
+        <attr name="follow_check" format="boolean" />
     </declare-styleable>
 
 </resources>

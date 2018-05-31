@@ -7,10 +7,11 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
@@ -18,7 +19,7 @@ import android.widget.TextView;
  */
 public class FollowButton extends FrameLayout {
 
-    private ContentLoadingProgressBar progressBar;
+    private ProgressBar progressBar;
     private TextView tv_name;
 
     private int mTextSize;
@@ -60,14 +61,12 @@ public class FollowButton extends FrameLayout {
     }
 
     private void initData(Context context, AttributeSet attrs, int defStyleAttr) {
-        mTextSize = DensityUtil.dp2px(12);
+        mTextSize = DensityUtil.dp2px(15);
         mNorBackground = R.drawable.bg_follow_button_nor;
         mCheckBackground = R.drawable.bg_follow_button_check;
         mChecked = false;
         mNorTextColor = Color.parseColor("#000000");
         mCheckTextColor = Color.parseColor("#cccccc");
-        mNorText = "+ 关注";
-        mCheckText = "已关注";
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FollowButton, defStyleAttr, 0);
@@ -82,6 +81,14 @@ public class FollowButton extends FrameLayout {
             mCheckText = ta.getString(R.styleable.FollowButton_follow_text_check);
 
             ta.recycle();
+        }
+
+        if (mNorText == null) {
+            mNorText = "+ 关注";
+        }
+
+        if (mCheckText == null) {
+            mCheckText = "已关注";
         }
     }
 
@@ -111,6 +118,24 @@ public class FollowButton extends FrameLayout {
         mChecked = check;
 
         setView();
+    }
+
+    public void startLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+        tv_name.setVisibility(View.INVISIBLE);
+    }
+
+    public void finishLoading() {
+        progressBar.setVisibility(View.INVISIBLE);
+        tv_name.setVisibility(View.VISIBLE);
+    }
+
+    public boolean isLoading() {
+        return progressBar.isShown();
+    }
+
+    public boolean isChecked() {
+        return mChecked;
     }
 
 }
