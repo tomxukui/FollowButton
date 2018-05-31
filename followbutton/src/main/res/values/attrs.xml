@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FollowButton">
+        <attr name="android:textSize" format="dimension" />
+        <attr name="follow_background_nor" format="reference" />
+        <attr name="follow_background_check" format="reference" />
+        <attr name="follow_textColor_nor" format="color" />
+        <attr name="follow_textColor_check" format="color" />
+        <attr name="follow_text_nor" format="string" />
+        <attr name="follow_text_check" format="string" />
+        <attr name="follow_check" format="boolean"></attr>
+    </declare-styleable>
+
+</resources>
